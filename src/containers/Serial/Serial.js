@@ -58,14 +58,20 @@ const Serial = () => {
 
     return state.serial && (
         <div className='serial'>
-            <p>Name: {state.serial.name}</p>
-            <p>Run time: {state.serial.runtime}</p>
-            <p>Date of premier: {state.serial.premiered}</p>
-            {state.serial.genres.map(g => {
-                return <p key={g}>{g}</p>
-            })}
-            <img src={state.serial.image.medium} alt={state.serial.name}></img>
-            <p>Description: {state.serial.summary.replace(/[<p>]/g, '')}</p>
+            <div className='serial-block-img'>
+                <img src={state.serial.image.medium} alt={state.serial.name}></img>
+            </div>
+            <div className='serial-block-left'>
+                <p>{state.serial.name}</p>
+                <p>Run time: {state.serial.runtime}</p>
+                <p>Premiere date: {state.serial.premiered}</p>
+                <div className='genres'>Genres:
+                    {state.serial.genres.map(g => {
+                        return <p key={g}>{g}</p>
+                    })}
+                </div>
+                <p className='description'>Description: {state.serial.summary.replace(/[<p>/]/g, '')}</p>
+            </div>
         </div>
     );
 };

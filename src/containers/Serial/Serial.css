@@ -1,0 +1,30 @@
+.serial {
+    display: flex;
+    padding: 50px;
+    background: #54626b;
+    margin-top: 100px;
+}
+
+p {
+    margin: 0 0 25px 0;
+}
+
+.genres {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.genres p {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.serial-block-left {
+    margin: 20px;
+    font-weight: lighter;
+}
+
+.description {
+    font-size: 22px;
+}
