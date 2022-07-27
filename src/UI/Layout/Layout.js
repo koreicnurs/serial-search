@@ -1,13 +1,13 @@
 import React from 'react';
-import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
-import './Layout.css';
+import NavBar from "../../components/Navigation/NavBar/NavBar";
 import SearchSerials from "../../containers/SearchSerials/SearchSerials";
+import './Layout.css';
 
 const Layout = props => {
 
     return (
         <div>
-            <Toolbar/>
+            <NavBar/>
             <SearchSerials/>
             <div className='content'>{props.children}</div>
         </div>

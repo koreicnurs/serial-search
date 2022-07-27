@@ -8,7 +8,7 @@ const App = () => {
     return (
         <Layout>
             <Switch>
-                <Route path='/' exact component={SearchSerials}/>
+                <Route path='/' exact render={() => <h1>Choice ur serial</h1>}/>
                 <Route path='/shows/:id' exact component={Serial}/>
                 <Route render={() => <h1>Not Found</h1>}/>
             </Switch>
