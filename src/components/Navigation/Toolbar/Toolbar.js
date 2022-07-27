@@ -4,12 +4,15 @@ import './Toolbar.css';
 
 const Toolbar = () => {
     return (
-        <header className='Toolbar'>
-            <div className='Logo'>Page Logo</div>
-            <nav>
-                <NavItems/>
-            </nav>
-        </header>
+        <>
+            <header className='Toolbar'>
+                <div className='Logo'>Page Logo</div>
+                <nav>
+                    <NavItems/>
+                </nav>
+            </header>
+        </>
+
     );
 };
 
