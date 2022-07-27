@@ -3,8 +3,9 @@ import axios from "axios";
 import {Autocomplete, TextField} from "@mui/material";
 import {useHistory} from "react-router-dom";
 import {useReducer} from "react";
+import './SearchSerials.css';
 
-const initalState = {
+const initialState = {
     serials: [],
     value: '',
     loading: false,
@@ -38,46 +39,51 @@ const reducer = (state, action) => {
 
 const SearchSerials = () => {
 
-    const [state, dispatch] = useReducer(reducer, initalState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const history = useHistory();
 
-    const onChangeInput = async (e) => {
-        history.push(`/shows/${e.id}`)
+    const getValue = e => {
+        if (e !== null) {
+            dispatch(fetchTodoSuccessValue(e));
+        }
     };
 
-    const getValue = (e) => {
-        dispatch(fetchTodoSuccessValue(e));
+    const onChangeInput = e => {
+        if (e !== null) {
+            history.push(`/shows/${e.id}`)
+        }
     };
 
     useEffect(() => {
         const fetchTodo = async () => {
             dispatch(fetchTodoRequest());
+            if (state.value) {
+                if (state.value.length >= 3) {
+                    try {
+                        const response = await axios(`http://api.tvmaze.com/search/shows?q=${state.value}`);
+                        const allNameSerial = response.data.map(r => {
+                            return {
+                                serialName: r.show.name,
+                                id: r.show.id
+                            }
+                        });
 
-            if (state.value.length >= 3) {
-                try {
-                    const response = await axios(`http://api.tvmaze.com/search/shows?q=${state.value}`);
-                    const allNameSerial = response.data.map(r => {
-                        return {
-                            serialName: r.show.name,
-                            id: r.show.id
+                        if (response.data) {
+                            dispatch(fetchTodoSuccess(allNameSerial));
+                        } else {
+                            dispatch(fetchTodoSuccess(null));
                         }
-                    });
 
-                    if (response.data) {
-                        dispatch(fetchTodoSuccess(allNameSerial));
-                    } else {
-                        dispatch(fetchTodoSuccess(null));
+                    } catch (e) {
+                        dispatch(fetchTodoFailure());
                     }
-
-                } catch (e) {
-                    dispatch(fetchTodoFailure());
                 }
             }
+
         };
         fetchTodo().catch();
     }, [state.value])
-
 
     return (
         <>

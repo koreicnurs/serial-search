@@ -1,0 +1,14 @@
+body {
+    background: aliceblue;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin: 0;
+}
+
+
