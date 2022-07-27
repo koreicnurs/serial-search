@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import axios from "axios";
+import Spinner from "../../UI/Spinner/Spinner";
 import './Serial.css';
 
 const initialState = {
@@ -56,7 +57,7 @@ const Serial = () => {
         fetchTodo().catch();
     }, [match.params.id])
 
-    return state.serial && (
+    return state.loading ? (<Spinner/>) : state.serial && (
         <div className='serial'>
             <div className='serial-block-img'>
                 <img src={state.serial.image.medium} alt={state.serial.name}></img>

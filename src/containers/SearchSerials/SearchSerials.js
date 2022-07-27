@@ -8,7 +8,6 @@ import './SearchSerials.css';
 const initialState = {
     serials: [],
     value: '',
-    loading: false,
 };
 
 export const FETCH_TODO_REQUEST = 'FETCH_TODO_REQUEST';
@@ -27,9 +26,9 @@ const reducer = (state, action) => {
         case FETCH_TODO_REQUEST:
             return {...state, loading: true};
         case FETCH_TODO_SUCCESS:
-            return {...state, serials: action.payload, loading: false};
+            return {...state, serials: action.payload};
         case FETCH_TODO_SUCCESS_VALUE:
-            return {...state, value: action.payload, loading: false};
+            return {...state, value: action.payload};
         case FETCH_TODO_FAILURE:
             return {...state};
         default:
