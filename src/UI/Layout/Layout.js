@@ -6,11 +6,11 @@ import './Layout.css';
 const Layout = props => {
 
     return (
-        <div>
+        <>
             <NavBar/>
             <SearchSerials/>
             <div className='content'>{props.children}</div>
-        </div>
+        </>
     );
 };
 

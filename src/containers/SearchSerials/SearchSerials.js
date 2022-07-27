@@ -54,23 +54,25 @@ const SearchSerials = () => {
         const fetchTodo = async () => {
             dispatch(fetchTodoRequest());
 
-            try {
-                const response = await axios(`http://api.tvmaze.com/search/shows?q=${state.value}`);
-                const allNameSerial = response.data.map(r => {
-                    return {
-                        serialName: r.show.name,
-                        id: r.show.id
+            if (state.value.length >= 3) {
+                try {
+                    const response = await axios(`http://api.tvmaze.com/search/shows?q=${state.value}`);
+                    const allNameSerial = response.data.map(r => {
+                        return {
+                            serialName: r.show.name,
+                            id: r.show.id
+                        }
+                    });
+
+                    if (response.data) {
+                        dispatch(fetchTodoSuccess(allNameSerial));
+                    } else {
+                        dispatch(fetchTodoSuccess(null));
                     }
-                });
 
-                if (response.data) {
-                    dispatch(fetchTodoSuccess(allNameSerial));
-                } else {
-                    dispatch(fetchTodoSuccess(null));
+                } catch (e) {
+                    dispatch(fetchTodoFailure());
                 }
-
-            } catch (e) {
-                dispatch(fetchTodoFailure());
             }
         };
         fetchTodo().catch();
