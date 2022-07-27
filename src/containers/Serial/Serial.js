@@ -1,14 +1,11 @@
 import React, {useEffect, useReducer} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import axios from "axios";
-import {useDispatch} from "react-redux";
-import SearchSerials from "../SearchSerials/SearchSerials";
-
 
 const initalState = {
     serial: [],
     loading: false,
-}
+};
 
 export const FETCH_TODO_REQUEST = 'FETCH_TODO_REQUEST';
 export const FETCH_TODO_SUCCESS = 'FETCH_TODO_SUCCESS';
@@ -19,7 +16,7 @@ export const fetchTodoSuccess = value => ({type: FETCH_TODO_SUCCESS, payload: va
 export const fetchTodoFailure = () => ({type: FETCH_TODO_FAILURE});
 
 
-const reducer = (state , action) => {
+const reducer = (state, action) => {
     switch (action.type) {
         case FETCH_TODO_REQUEST:
             return {...state, loading: true};
